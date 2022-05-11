@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!------<title> Website Layout | CodingLab</title>------>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+  <section  id="navbarr">
+  <nav>
+    <div class="menu">
+      <div class="logo">
+        <a href="#" style="color: #F66B0E">Stego-Text</a>
+      </div>
+      <ul>
+        <li><a href="#home" style="color: #F66B0E">Home</a></li>
+        <li><a href="#about" style="color: #F66B0E">About</a></li>
+        <li><a href="#contact" style="color: #F66B0E">Contact</a></li>
+
+      </ul>
+    </div>
+  </nav>
+  </section>
+
+  <section id="home">
+    <div class="container" >
+      <ul class="nav nav-tabs" id="tabs" data-tabs="tabs">
+        <li role="presentation" class="active" > <a href="#encode" data-toggle="tab">Encode</a></li>
+        <li role="presentation"> <a href="#decode" data-toggle="tab">Decode</a></li>
+      </ul>
+
+      <div id="my-tab-content" class="tab-content">
+        <div class="tab-pane active" id="encode">
+          <div>
+            <h2><b>Encode message</b></h2>
+            <p class="alert alert-warning">
+              To encode a message into an image, choose the image you want to use, enter your text and hit the
+              <strong>Encode</strong> button. <br />
+              Save the last image, it will contain your hidden message. <br />
+              Remember, the more text you want to hide, the larger the image has to be. In case you chose an image that
+              is
+              too small to hold your message you will be informed.<br /><br />
+              Neither the image nor the message you hide will be at any moment transmitted over the web, all the magic
+              happens within your browser.
+            </p>
+            <form class="form">
+              <div class="form-group">
+                <input class="form-control" type="file" name="baseFile" onchange="previewEncodeImage()">
+              </div>
+
+              <div class="form-group">
+                <textarea class="form-control message" rows="3" placeholder="Enter your message here"></textarea>
+              </div>
+
+              <div class="form-group">
+                <button class="encode btn btn-default pull-right" onclick="encodeMessage()">Encode</button>
+              </div>
+            </form>
+            <div class="clearfix"></div>
+          </div>
+
+          <div class="error" style="display: none;"></div>
+          <div class="binary" style="display: none;">
+            <h3>Binary representation of your message</h3>
+            <textarea class="form-control message" style="word-wrap:break-word;">
+          </textarea>
+          </div>
+          <div class="images" style="display: none;">
+            <div class="original" style="display: none;">
+              <h3>Original</h3>
+              <canvas></canvas>
+            </div>
+            <div class="nulled" style="display: none;">
+              <h3>Normalized</h3>
+              <canvas></canvas>
+            </div>
+            <div class="message" style="display: none;">
+              <h3><b>Message hidden in image (right click <span class="glyphicon glyphicon-arrow-right"></span> save as)</b>
+              </h3>
+              <canvas></canvas>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="decode">
+          <div>
+            <h2><b>Decode image</b></h2>
+            <p class="alert alert-warning">
+              To decode a hidden message from an image, just choose an image and hit the <strong>Decode</strong>
+              button.<br /><br />
+              Neither the image nor the message that has been hidden will be at any moment transmitted over the web, all
+              the magic happens within your browser.
+            </p>
+            <form class="form">
+              <div class="form-group">
+                <input class="form-control" type="file" name="decodeFile" onchange="previewDecodeImage()">
+              </div>
+              <div class="form-group">
+                <button class="decode btn btn-default pull-right" onclick="decodeMessage()">Decode</button>
+              </div>
+            </form>
+            <div class="clearfix"></div>
+          </div>
+          <div class="binary-decode" style="display: none;">
+            <h3>Hidden message</h3>
+            <textarea class="form-control message" style="word-wrap:break-word;">
+          </textarea>
+          </div>
+          <div class="decode" style="display: none;">
+            <h3>Input</h3>
+            <canvas></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+
+
+  </section>
+
+  <!---About Section-->
+
+  <section id="about">
+    <div class="about container">
+      <h1><b>ABOUT</b></h1>
+
+      <img id="image_about" src="stego.jpg" alt="image" width=45% height=45%>
+      <h3>What is steganography?</h3>
+
+      <p>
+        Steganography is the technique of hiding secret data within an ordinary, non-secret, file or message in order to
+        avoid detection; the secret data is then extracted at its destination. The use of steganography can be combined
+        with encryption as an extra step for hiding or protecting data. The word steganography is derived from the Greek
+        words steganos (meaning hidden or covered) and the Greek root graph (meaning to write).
+
+        Steganography can be used to conceal almost any type of digital content, including text, image, video or audio
+        content; the data to be hidden can be hidden inside almost any other type of digital content. The content to be
+        concealed through steganography -- called hidden text -- is often encrypted before being incorporated into the
+        innocuous-seeming cover text file or data stream. If not encrypted, the hidden text is commonly processed in
+        some way in order to increase the difficulty of detecting the secret content.
+
+      <h3>How is steganography used today?</h3>
+      In modern digital steganography, data is first encrypted or obfuscated in some other way and then inserted, using
+      a special algorithm, into data that is part of a particular file format such as a JPEG image, audio or video file.
+      The secret message can be embedded into ordinary data files in many different ways. One technique is to hide data
+      in bits that represent the same color pixels repeated in a row in an image file. By applying the encrypted data to
+      this redundant data in some inconspicuous way, the result will be an image file that appears identical to the
+      original image but that has "noise" patterns of regular, unencrypted data.
+
+      The practice of adding a watermark -- a trademark or other identifying data hidden in multimedia or other content
+      files -- is one common use of steganography. Watermarking is a technique often used by online publishers to
+      identify the source of media files that have been found being shared without permission.
+
+      While there are many different uses of steganography, including embedding sensitive information into file types,
+      one of the most common techniques is to embed a text file into an image file. When this is done, anyone viewing
+      the image file should not be able to see a difference between the original image file and the encrypted file; this
+      is accomplished by storing the message with less significant bites in the data file. This process can be completed
+      manually or with the use of a steganography tool.
+      </p>
+
+
+    </div>
+  </section>
+
+
+  <!-- End About Section -->
+
+
+
+  <section id="contact">
+    <div class="contact container">
+
+      <h1><b>CONTACT</b></h1>
+
+      <div class="contact-items">
+        <div class="contact-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/phone.png" /></div>
+          <div class="contact-info">
+            <h1>Phone</h1>
+            <h2>+91 7721075269</h2>
+            <h2>+91 8446436733</h2>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/new-post.png" /></div>
+          <div class="contact-info">
+            <h1>Email</h1>
+            <h2>diveshbhoyar7@gmail.com</h2>
+            <h2>janvik@gmail.com</h2>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="icon"><img src="https://img.icons8.com/bubbles/100/000000/map-marker.png" /></div>
+          <div class="contact-info">
+            <h1>Address</h1>
+            <h2>St.vincent pallotti college,Jamtha, Nagpur, Maharashtra</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="text-align: center; margin-top: 20px; margin-bottom: 10px;">
+    &copy; 2022 by <a href="mailto:diveshbhoyar7@gmail.com">Pallotti Student</a>
+  </footer>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script type="text/JavaScript" src="script.js"></script>
+
+</body>
+
+</html>
